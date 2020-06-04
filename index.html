@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bootstrap Layout</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+             * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            html, body {
+                height: 100%;
+                overflow: auto;
+            }
+
+            .row > * {
+                border: 1px solid lightslategray;
+            }
+
+            .layout-header-height {
+                height: 3rem;
+            }
+
+            .layout-left-column {
+                display: none;
+                min-width: 5rem;
+            }
+
+            .layout-content-height {
+                min-height: 282px;
+                height: calc(100% - 3rem);
+            }
+
+            .logo {
+                text-align: center;
+            }
+
+            .nav {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .nav__item {
+                width: 100%;
+                list-style: none;
+                flex: 0 0 5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid lightslategray;
+            }
+
+            .card {
+                height: 5rem;
+            }
+
+            @media (min-width: 576px) {
+                .layout-left-column {
+                    display: flex;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid h-100">
+            <div class="row layout-header-height flex-nowrap">
+                <div class="col-1 d-flex justify-content-center align-items-center col-sm-1 col-md-2 h-100 layout-left-column">
+                    <div class="logo">
+                        <p class="m-0">BS</p>
+                    </div>
+                </div>
+                <div class="col col-md-10 h-100 d-flex justify-content-between align-items-center">
+                    <div class="header__title">BootStrap Layout</div>
+                    <div class="header__functions d-flex">
+                        <div class="functions__search">
+                            <input 
+                                type="search" 
+                                name="search" 
+                                placeholder="Search"/>
+                        </div>
+                        <div class="functions__settings">S</div>
+                        <div class="header__user">
+                            <p class="m-0">CB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row layout-content-height flex-nowrap">
+                <div class="col-1 d-md-flex col-md-2 layout-left-column p-0">
+                    <ul class="nav">
+                        <li class="nav__item">H</li>
+                        <li class="nav__item">A</li>
+                        <li class="nav__item">C</li>
+                        <li class="nav__item">R</li>
+                    </ul>
+                </div>
+                <div class="col col-md-10">
+                    <div class="row">
+                        <div class="col">Title</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-4 card">Card1</div>
+                        <div class="col-12 col-sm-6 col-md-4 card">Card2</div>
+                        <div class="col-12 col-sm-6 col-md-4 card">Card3</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <label for="filter">Filter</label>
+                            <input id="filter" type="search" />
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <label for="download">Export to CSV</label>
+                            <button id="download">Download</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
