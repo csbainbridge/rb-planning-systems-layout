@@ -5,12 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Bootstrap Layout</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/d01d9d3638.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
         <style>
              * {
                 box-sizing: border-box;
                 margin: 0;
                 padding: 0;
-                font-family: Arial, Helvetica, sans-serif;
+                font-family: 'Work Sans', Arial, Helvetica, sans-serif;
             }
 
             html, body {
@@ -18,9 +21,9 @@
                 overflow: auto;
             }
 
-            .row > * {
+            /* .row > * {
                 border: 1px solid lightslategray;
-            }
+            } */
 
             .layout-header-height {
                 height: 3rem;
@@ -32,18 +35,42 @@
             }
 
             .layout-content-height {
-                min-height: 282px;
+                min-height: 564px;
                 height: calc(100% - 3rem);
             }
 
-            .logo {
+            .logo > p {
                 text-align: center;
+                font-family: 'PT Serif', serif;
+            }
+
+            .hamburger {
+                font-size: 1.4rem;
+            }
+
+            header {
+                background-color: #003932;
+                color: #F7F7F7;
+            }
+
+            .header__title {
+                text-transform: uppercase;
+                letter-spacing: 0.15rem;
+            }
+
+            .header__user-icon {
+                font-size: 1.7rem;
             }
 
             .nav {
+                z-index: 1;
                 width: 100%;
                 display: flex;
                 flex-direction: column;
+                font-size: 1.6rem;
+
+                background-color: #1E1E1E;
+                color: #F7F7F7;
             }
             .nav__item {
                 width: 100%;
@@ -52,8 +79,18 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border: 1px solid lightslategray;
+                /* border: 1px solid lightslategray; */
             }
+
+            .nav__item:hover {
+                z-index: 2;
+                border-left: 6px solid #3F8957;
+                background-color: #333333;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                width: calc(100% + 3px);
+                transition: all ease-in 0.1s;
+                cursor: pointer;
+            };
 
             .card {
                 height: 5rem;
@@ -64,39 +101,112 @@
                     display: flex;
                 }
             }
+
+            @media (min-width: 768px) {
+                .nav__item-text {
+                    font-size: 0.6rem;
+                }
+                .logo {
+                    font-size: 1.5rem;
+                }
+            }
+
+            /* @media (min-width: 992px) {
+                .nav__item {
+                    padding-left: 0.5rem;
+                }
+            } */
+
+            @media (min-width: 1112px) {
+                .nav__item-text {
+                    font-size: 0.8rem;
+                }
+                .logo {
+                    font-size: 1.7rem;
+                }
+            }
+            
+            @media (min-width: 1366px) {
+                .nav__item {
+                    flex-direction: row !important;
+                    justify-content: flex-start;
+                    padding-left: 0.5rem;
+                }
+
+                .nav__item > i {
+                    margin-right: 1rem !important;
+                }
+
+                .logo {
+                    font-size: 1.9rem;
+                }
+            }
+
+            @media (min-width: 1440px) {
+                .nav__item-text {
+                    font-size: 1rem;
+                }
+            }
         </style>
     </head>
     <body>
         <div class="container-fluid h-100">
             <div class="row layout-header-height flex-nowrap">
-                <div class="col-1 d-flex justify-content-center align-items-center col-sm-1 col-md-2 h-100 layout-left-column">
-                    <div class="logo">
-                        <p class="m-0">BS</p>
-                    </div>
-                </div>
-                <div class="col col-md-10 h-100 d-flex justify-content-between align-items-center">
-                    <div class="header__title">BootStrap Layout</div>
-                    <div class="header__functions d-flex">
-                        <div class="functions__search">
-                            <input 
-                                type="search" 
-                                name="search" 
-                                placeholder="Search"/>
+                <header class="d-flex flex-nowrap w-100 shadow-sm">
+                    <div class="col-1 d-flex justify-content-center align-items-center col-sm-1 col-md-2 h-100 layout-left-column">
+                        <div class="logo">
+                            <p class="d-none d-sm-block m-0">CRODA</p>
                         </div>
-                        <div class="functions__settings">S</div>
-                        <div class="header__user">
-                            <p class="m-0">CB</p>
+                        <div class="hamburger">
+                            <i class="fas fa-bars d-sm-none hamburger"></i>
                         </div>
                     </div>
-                </div>
+                    <div class="col col-md-10 h-100 d-flex justify-content-between align-items-center">
+                        <div class="header__title text-nowrap">Sampling Stock Management</div>
+                        <div class="header__functions d-flex">
+                            <!-- <div class="functions__search">
+                                <input 
+                                    type="search" 
+                                    name="search" 
+                                    placeholder="Search"/>
+                            </div>
+                            <div class="functions__settings">S</div> -->
+                            <div class="header__user d-flex align-items-center">
+                                <p class="d-none d-md-flex m-0">CRODA/curtis.bainbridge</p>
+                                <i class="header__user-icon fas fa-user-circle ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </header>
             </div>
             <div class="row layout-content-height flex-nowrap">
                 <div class="col-1 d-md-flex col-md-2 layout-left-column p-0">
-                    <ul class="nav">
-                        <li class="nav__item">H</li>
-                        <li class="nav__item">A</li>
-                        <li class="nav__item">C</li>
-                        <li class="nav__item">R</li>
+                    <ul class="nav flex-nowrap">
+                        <!--  flex-lg-row justify-content-lg-start-->
+                        <li class="nav__item d-flex flex-column">
+                            <i class="fas fa-book-open m-2"></i>
+                            <p class="nav__item-text d-none d-md-block m-0">Outstanding Orders</p>
+                        </li>
+                        <li class="nav__item d-flex flex-column">
+                            <i class="fas fa-vial m-2"></i>
+                            <p class="nav__item-text d-none d-md-block m-0">Replenish Sample Stock</p>
+                        </li>
+                        <li class="nav__item d-flex flex-column ">
+                            <i class="fas fa-fill-drip m-2"></i>
+                            <p class="nav__item-text d-none d-md-block m-0">Replenish Bucket Stock</p>
+                        </li>
+                        <li class="nav__item d-flex flex-column ">
+                            <i class="fas fa-box-open m-2"></i>
+                            <p class="nav__item-text d-none d-md-block m-0">Materials to Order</p>
+                        </li>
+                        <li class="nav__item d-flex flex-column ">
+                            <i class="fas fa-industry m-2"></i>
+                            <p class="nav__item-text d-none d-md-block m-0">Production Availability</p>
+                        </li>
+                        <li class="nav__item d-flex flex-column ">
+                            <i class="fas fa-pencil-alt m-2"></i>
+                            <p class="nav__item-text d-none d-md-block m-0">Material Administration</p>
+                        </li>
                     </ul>
                 </div>
                 <div class="col col-md-10">
