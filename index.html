@@ -19,6 +19,7 @@
             html, body {
                 height: 100%;
                 overflow: auto;
+                background-color: #121212;
             }
 
             /* .row > * {
@@ -79,7 +80,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                border: #3F8957;
                 /* border: 1px solid lightslategray; */
+            }
+
+            .nav__item-text {
+                font-size: 0.6rem;
+                margin: 0;
             }
 
             .nav__item:hover {
@@ -147,6 +154,110 @@
                     font-size: 1rem;
                 }
             }
+
+            .search-wrapper {
+                display: flex;
+                flex-wrap: nowrap;
+            }
+
+            input[type=text], .search-wrapper > i {
+                background: #1F1F1F;
+                color: #9F9F9F;
+                
+            }
+
+            input[type=text] {
+                width: 100%;
+                height: 2.25rem;
+                background: #1F1F1F;
+                padding: 1.35rem .75rem;
+                border: 2px solid #1F1F1F;
+                transition: border ease-in .1s;
+                font-size: 1rem;
+                letter-spacing: 0.1rem;
+                border-bottom-left-radius: 0.25rem;
+                border-top-left-radius: 0.25rem;
+            }
+
+            .input__search:focus {
+                outline: none;
+                border: 2px solid #3F8957 !important;
+                transition: border ease-in .1s;
+            }
+
+            .search-wrapper > i {
+                margin-left: 1px;
+                padding: 1rem;
+                font-size: 0.9rem;
+                border-top-right-radius: .25rem;
+                border-bottom-right-radius: .25rem;
+            }
+
+            .product-model {
+                display: none;
+                z-index: 1;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background-color: lightslategray;
+                height: 100vh;
+            }
+
+            .product-model > header, .product-model__notes {
+                padding: 1rem;
+            }
+
+            .product-model--open {
+                transform: translateY(100%);
+            }
+
+            button {
+                position: relative;
+                height: 3rem;
+                width: 100%;
+                padding: 5px 5px;
+                border: 2px solid #3F8957;
+                border-radius: .2rem;
+                outline: 0;
+                background: none;
+                font-weight: 700;
+                font-size: 1rem;
+                text-transform: uppercase;
+                letter-spacing: .3rem;
+                color: #3F8957;
+                cursor: pointer;
+                z-index: 1;
+                transition:         0.1s ease-in;
+                -o-transition:      0.1s ease-in;
+                -ms-transition:     0.1s ease-in;
+                -moz-transition:    0.1s ease-in;
+                -webkit-transition: 0.1s ease-in;
+            }
+
+            button:hover {
+                color: #121212;
+                font-weight: 700;
+            }
+
+            .fill {
+                background-color: #121212;
+            }
+
+            .fill:before {
+                content: "";
+                position: absolute;
+                background: #3F8957;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: 100%;
+                z-index: -1;
+                -webkit-transition: top 0.1s ease-in;
+            }
+
+            .fill:hover:before {
+                top: 0;
+            }
         </style>
     </head>
     <body>
@@ -154,14 +265,16 @@
             <div class="row layout-header-height flex-nowrap">
                 <header class="d-flex flex-nowrap w-100 shadow-sm">
                     <div class="col-1 d-flex justify-content-center align-items-center col-sm-1 col-md-2 h-100 layout-left-column">
+                        <div class="hamburger">
+                            <i class="fas fa-bars hamburger"></i>
+                        </div>
+                    </div>
+                    <div class="col-2">
                         <div class="logo">
                             <p class="d-none d-sm-block m-0">CRODA</p>
                         </div>
-                        <div class="hamburger">
-                            <i class="fas fa-bars d-sm-none hamburger"></i>
-                        </div>
                     </div>
-                    <div class="col col-md-10 h-100 d-flex justify-content-between align-items-center">
+                    <div class="col col-md-8 h-100 d-flex justify-content-between align-items-center">
                         <div class="header__title text-nowrap">Sampling Stock Management</div>
                         <div class="header__functions d-flex">
                             <!-- <div class="functions__search">
@@ -186,26 +299,32 @@
                         <li class="nav__item d-flex flex-column">
                             <i class="fas fa-book-open m-2"></i>
                             <p class="nav__item-text d-none d-md-block m-0">Outstanding Orders</p>
+                            <p class="nav__item-text d-md-none">OSO</p>
                         </li>
                         <li class="nav__item d-flex flex-column">
                             <i class="fas fa-vial m-2"></i>
                             <p class="nav__item-text d-none d-md-block m-0">Replenish Sample Stock</p>
+                            <p class="nav__item-text d-md-none">Sample Stock</p>
                         </li>
                         <li class="nav__item d-flex flex-column ">
                             <i class="fas fa-fill-drip m-2"></i>
                             <p class="nav__item-text d-none d-md-block m-0">Replenish Bucket Stock</p>
+                            <p class="nav__item-text d-md-none">Bucket Stock</p>
                         </li>
                         <li class="nav__item d-flex flex-column ">
                             <i class="fas fa-box-open m-2"></i>
                             <p class="nav__item-text d-none d-md-block m-0">Materials to Order</p>
+                            <p class="nav__item-text d-md-none">Order</p>
                         </li>
                         <li class="nav__item d-flex flex-column ">
                             <i class="fas fa-industry m-2"></i>
                             <p class="nav__item-text d-none d-md-block m-0">Production Availability</p>
+                            <p class="nav__item-text d-md-none">Production</p>
                         </li>
                         <li class="nav__item d-flex flex-column ">
                             <i class="fas fa-pencil-alt m-2"></i>
                             <p class="nav__item-text d-none d-md-block m-0">Material Administration</p>
+                            <p class="nav__item-text d-md-none">Admin</p>
                         </li>
                     </ul>
                 </div>
@@ -220,15 +339,35 @@
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm-6">
-                            <label for="filter">Filter</label>
-                            <input id="filter" type="search" />
+                            <label for="search">Filter Materials</label>
+                            <div class="search-wrapper">
+                                <!-- Input-->
+                                <input
+                                    class="input__search"
+                                    id="search" 
+                                    type="text"
+                                    placeholder="Search"/>
+                                <!-- Icon -->
+                                <i class="fas fa-search"></i>
+                            </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label for="download">Export to CSV</label>
-                            <button id="download">Download</button>
+                            <button class="fill">Download</button>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="modal-wrapper">
+                <section class="product-model">
+                    <header>
+                        <h1>Material SKU</h1>
+                        <p>Material Description</p>
+                    </header>
+                    <section class="product-model__notes">
+                        <p>Products notes</p>
+                    </section>
+                </section>
             </div>
         </div>
     </body>
