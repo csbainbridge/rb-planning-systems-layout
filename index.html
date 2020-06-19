@@ -18,7 +18,7 @@
 
             html, body {
                 height: 100%;
-                overflow: auto;
+                overflow: hidden;
                 background-color: #121212;
             }
 
@@ -194,22 +194,92 @@
             }
 
             .product-model {
-                display: none;
+                display: block;
+                width: 24rem;
                 z-index: 1;
                 position: absolute;
                 right: 0;
                 bottom: 0;
-                background-color: lightslategray;
-                height: 100vh;
+                background-color: #1E1E1E;
+                height: calc(100vh - 48px);
             }
 
             .product-model > header, .product-model__notes {
                 padding: 1rem;
             }
 
+            .product-model__header {
+                background: #1E1E1E;
+            }
+
+            .product-model__notes-input {
+                background: transparent;
+                border: 2px solid #f7f7f7;
+                border-radius: 0.25rem;
+                height: 10rem;
+                width: 100%;
+                outline: none;
+                padding: 1rem;
+                color: #f7f7f7;
+            }
+
             .product-model--open {
                 transform: translateY(100%);
             }
+
+            .product-model__actions {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                display: flex;
+                flex-wrap: nowrap;
+                padding: 0 1rem 1rem 1rem;
+            }
+
+            .product-notes-label {
+                color: #f7f7f7;
+            }
+
+            .product-model__close {
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 1rem;
+            }
+
+            .btn-modal-confirm,
+            .btn-modal-cancel {
+                width: 50%;
+            }
+
+            .btn-modal-cancel {
+                margin-right: 1rem;
+                border: 2px solid #F7F7F7;
+                color: #F7F7F7;
+            }
+
+            .fill-cancel {
+                background: transparent;
+            }
+
+            .fill-cancel:before {
+                content: "";
+                position: absolute;
+                background: #F7F7F7;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: 100%;
+                z-index: -1;
+                -webkit-transition: top 0.1s ease-in;
+            }
+
+            .fill-cancel:hover:before {
+                top: 0;
+            }
+
+
 
             button {
                 position: relative;
@@ -240,7 +310,7 @@
             }
 
             .fill {
-                background-color: #121212;
+                background-color: transparent;
             }
 
             .fill:before {
@@ -258,6 +328,8 @@
             .fill:hover:before {
                 top: 0;
             }
+
+           
         </style>
     </head>
     <body>
@@ -338,7 +410,7 @@
                         <div class="col-12 col-sm-6 col-md-4 card">Card3</div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-8">
                             <label for="search">Filter Materials</label>
                             <div class="search-wrapper">
                                 <!-- Input-->
@@ -351,24 +423,30 @@
                                 <i class="fas fa-search"></i>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-4">
                             <label for="download">Export to CSV</label>
                             <button class="fill">Download</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-wrapper">
-                <section class="product-model">
-                    <header>
-                        <h1>Material SKU</h1>
-                        <p>Material Description</p>
-                    </header>
-                    <section class="product-model__notes">
-                        <p>Products notes</p>
-                    </section>
+        </div>
+        <div class="modal-wrapper">
+            <section class="product-model">
+                <header class="product-model__header">
+                    <p class="product-model__close">X</p>
+                    <h1>EM00516/SAMP</h1>
+                    <p>ARLAMOL HD-LQ-(RB)</p>
+                </header>
+                <section class="product-model__notes">
+                    <label class="product-notes-label" for="product-notes">Notes:</label>
+                    <textarea id="product-notes" class="product-model__notes-input"></textarea>
                 </section>
-            </div>
+                <section class="product-model__actions">
+                    <button class="fill-cancel btn-modal-cancel">Cancel</button>
+                    <button class="fill btn-modal-confirm">Update</button>
+                </section>
+            </section>
         </div>
     </body>
 </html>
