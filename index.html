@@ -241,6 +241,15 @@
                 color: #f7f7f7;
             }
 
+            .product-model__hide-until-input {
+                width: 100%;
+                background: #1E1E1E;
+                border: 2px solid #F7f7f7;
+                border-radius: .25rem;
+                padding: 1rem;
+                color: #F7f7f7
+            }
+
             .product-model__close {
                 position: absolute;
                 right: 0;
@@ -441,6 +450,8 @@
                 <section class="product-model__notes">
                     <label class="product-notes-label" for="product-notes">Notes:</label>
                     <textarea id="product-notes" class="product-model__notes-input"></textarea>
+                    <label class="product-notes-label" for="product-notes-hide-until">Do not show until:</label>
+                    <input id="product-notes-hide-until" class="product-model__hide-until-input" type="date">
                 </section>
                 <section class="product-model__actions">
                     <button class="fill-cancel btn-modal-cancel">Cancel</button>
